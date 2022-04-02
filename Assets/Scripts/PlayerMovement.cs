@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         if (null != hit.transform)
         {
             Rigidbody2D colliderRb = hit.transform.GetComponent<Rigidbody2D>();
-            if (null != colliderRb && 5 < Mathf.Abs(colliderRb.velocity.y))
+            if (null != colliderRb && 1.5f < Mathf.Abs(colliderRb.velocity.y))
             {
                 //Stop the game if object have velocity
                 StopTheGame();
@@ -74,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
     {
 
         UpdateCameraPosition();
-
         CheckThatPlayerIsAlive();
 
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
