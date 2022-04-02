@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,10 @@ public class PlayerMovement : MonoBehaviour
     public float PlayerJump = 500.0f;
     public float playerHeight = 2.0f;
     Rigidbody2D rb;
+
     BoxCollider2D playerCollider;
 
+    float startLevel;
     public float CameraFollowSpeed = 2.0f;
     private bool IsGrounded()
     {
@@ -21,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        startLevel = transform.position.y;
+
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
     }
@@ -30,15 +35,16 @@ public class PlayerMovement : MonoBehaviour
         if (transform.position.y > Camera.main.transform.position.y)
         {
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x,
-                Camera.main.transform.position.y + Time.deltaTime * CameraFollowSpeed,
-                Camera.main.transform.position.z);
+            Camera.main.transform.position.y + Time.deltaTime * CameraFollowSpeed,
+            Camera.main.transform.position.z);
         }
     }
 
     void StopTheGame()
     {
         //TODO move to main menu
-        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 
     void CheckThatPlayerIsAlive()
@@ -46,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         //Check that players y > Lowest edge of camera.
         if (transform.position.y - Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y < 0)
         {
+            ScoreManager.instance.PlayerDied();
             StopTheGame();
         }
 
@@ -69,9 +76,14 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(new Vector2(transform.position.x - colliderWidth / 2, transform.position.y + playerHeight / 2 + 0.2f), Vector2.right * colliderWidth, Color.red);
     }
 
+    void AddScore()
+	{
+        ScoreManager.instance.AddPoints(System.Math.Round((transform.position.y - startLevel) * 10, 2));
+    }
 
     void Update()
     {
+        AddScore();
 
         UpdateCameraPosition();
 
