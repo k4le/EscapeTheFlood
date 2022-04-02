@@ -142,7 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeX: 0
   rangeY: 0
-  ObjectPrefabs: []
+  ObjectPrefabs:
+  - {fileID: 2053163922458770223, guid: c464748a369a6ee45aad8e7a00560cb1, type: 3}
 --- !u!1001 &441708549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -289,6 +290,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4138782865355375877, guid: daeb689e8d033cd4aa25199bb53fa686, type: 3}
   m_PrefabInstance: {fileID: 916688712}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &647345057 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4138782865355375898, guid: daeb689e8d033cd4aa25199bb53fa686, type: 3}
+  m_PrefabInstance: {fileID: 916688712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &647345059
 Animator:
   serializedVersion: 3
@@ -387,6 +393,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 647345059}
+    - target: {fileID: 4138782865355375899, guid: daeb689e8d033cd4aa25199bb53fa686, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 647345057}
     - target: {fileID: 6485768055255447375, guid: daeb689e8d033cd4aa25199bb53fa686, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.5
