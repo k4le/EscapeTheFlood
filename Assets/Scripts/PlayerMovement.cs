@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerHeight = 2.0f;
     Rigidbody2D rb;
     BoxCollider2D playerCollider;
+    public Animator animator;
 
     public float CameraFollowSpeed = 2.0f;
     private bool IsGrounded()
@@ -81,7 +82,9 @@ public class PlayerMovement : MonoBehaviour
      
         if (0 != input.x)
         {
+            //jos liikkuu vasemmalle, flip sprite, jos ei niin false x flip
             transform.Translate(input.x * playerSpeed * Time.deltaTime, 0, 0);
+            animator.setBool("isMoving", true);
         }
 
         Debug.DrawRay(new Vector2(transform.position.x - transform.localScale.x/2, transform.position.y - playerHeight/2 - 0.2f), Vector2.right * 1f, Color.red);
@@ -89,6 +92,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.AddForce(new Vector2(0, PlayerJump * rb.mass));
+            animator.setBool("isInAir", true);
+            animator.setBool("isMoving", false);
+        }
+
+        if (IsGrounded())
+        {
+            animator.setBool("isInAir", false);
         }
     }
 }
