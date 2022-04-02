@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public float PlayerJump = 500.0f;
     public float playerHeight = 2.0f;
     Rigidbody2D rb;
-
     BoxCollider2D playerCollider;
+    public Animator animator;
 
-    float startLevel;
     public float CameraFollowSpeed = 2.0f;
     private bool IsGrounded()
     {
@@ -25,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         startLevel = transform.position.y;
-
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
     }
@@ -66,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         if (null != hit.transform)
         {
             Rigidbody2D colliderRb = hit.transform.GetComponent<Rigidbody2D>();
-            if (null != colliderRb && 5 < Mathf.Abs(colliderRb.velocity.y))
+            if (null != colliderRb && 1.5f < Mathf.Abs(colliderRb.velocity.y))
             {
                 //Stop the game if object have velocity
                 StopTheGame();
@@ -91,10 +88,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-     
         if (0 != input.x)
         {
+            //jos liikkuu vasemmalle, flip sprite, jos ei niin false x flip
             transform.Translate(input.x * playerSpeed * Time.deltaTime, 0, 0);
+            animator.SetBool("isMoving", true);
         }
 
         Debug.DrawRay(new Vector2(transform.position.x - transform.localScale.x/2, transform.position.y - playerHeight/2 - 0.2f), Vector2.right * 1f, Color.red);
@@ -102,6 +100,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.AddForce(new Vector2(0, PlayerJump * rb.mass));
+            animator.SetBool("isInAir", true);
+            animator.SetBool("isMoving", false);
+        }
+
+        if (IsGrounded())
+        {
+            animator.SetBool("isInAir", false);
         }
     }
 }
