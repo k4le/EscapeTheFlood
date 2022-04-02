@@ -9,13 +9,14 @@ public class FallingObject : MonoBehaviour
 
     bool freeFall = true;
     int collisionCount = 0;
+    public float maxSpeed = 100;
     // Start is called before the first frame update
     void Start()
     {
         bc = GetComponent<BoxCollider2D>();
 
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.up * -1000f);
+        //rb.AddForce(transform.up * -100f);
         //rb.velocity = new Vector2(0, -50);
     }
 
@@ -23,27 +24,49 @@ public class FallingObject : MonoBehaviour
     // void Update()
     // {
     //     if (freeFall) {
-    //         transform.Translate(0, -10f * Time.deltaTime, 0);
+    //         
     //     }
     // }
     void FixedUpdate()
     {
-        var currentVelocity = rb.velocity;
+        // RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - transform.localScale.y / 2),
+        //    Vector2.down,
+        //    .1f);
+        //
+        // Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - transform.localScale.y/2), Vector2.down * 0.1f, Color.red);
+        //
+        // if (hit.transform == null) {
+        if (rb.velocity.magnitude > maxSpeed && freeFall) {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
+       
+        //transform.Translate(0, -2f * Time.deltaTime, 0);
 
-        if (currentVelocity.y <= 0f)
-            return;
-
-        currentVelocity.y = 0f;
-
-        rb.velocity = currentVelocity;
+        // var currentVelocity = rb.velocity;
+        //
+        // if (currentVelocity.y <= 0f)
+        //     return;z§
+        //
+        // currentVelocity.y = 0f;
+        //
+        // rb.velocity = currentVelocity;
     }
 
-    //void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    collisionCount++;
-    //    freeFall = false;
-    //}
-    //
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.contacts.Length > 0) {
+            ContactPoint2D contact = collision.contacts[0];
+            Debug.Log(contact.collider.tag);
+            if (Vector3.Dot(contact.normal, Vector3.up * -1) > transform.localScale.y / 2 && contact.collider.tag != "Player") {
+                freeFall = false;
+                rb.velocity = new Vector2(0.0f, 0.0f);
+                rb.gravityScale = 0.0f;
+                rb.mass = 1999;
+            }
+        }
+
+    }
+    
     //void OnCollisionExit2D(Collision2D collision)
     //{
     //    collisionCount--;

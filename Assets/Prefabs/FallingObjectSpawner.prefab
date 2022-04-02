@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62a37dbd6d63d44dace455f34a28066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeX: 0
-  rangeY: 0
+  rangeX: 10
+  rangeY: 10
   ObjectPrefabs:
   - {fileID: 2053163922458770223, guid: ce8510e81018e32418d8db4af6144a66, type: 3}
   - {fileID: 2053163922458770223, guid: 5bdeb12b5b2c3f94e931d0951198e383, type: 3}
