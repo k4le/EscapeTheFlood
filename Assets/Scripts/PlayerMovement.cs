@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //jos liikkuu vasemmalle, flip sprite, jos ei niin false x flip
             transform.Translate(input.x * playerSpeed * Time.deltaTime, 0, 0);
-            animator.setBool("isMoving", true);
+            animator.SetBool("isMoving", true);
         }
 
         Debug.DrawRay(new Vector2(transform.position.x - transform.localScale.x/2, transform.position.y - playerHeight/2 - 0.2f), Vector2.right * 1f, Color.red);
@@ -92,13 +92,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.AddForce(new Vector2(0, PlayerJump * rb.mass));
-            animator.setBool("isInAir", true);
-            animator.setBool("isMoving", false);
+            animator.SetBool("isInAir", true);
+            animator.SetBool("isMoving", false);
         }
 
         if (IsGrounded())
         {
-            animator.setBool("isInAir", false);
+            animator.SetBool("isInAir", false);
         }
     }
 }
