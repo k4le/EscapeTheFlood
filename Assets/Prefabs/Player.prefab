@@ -83,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4138782865355375899
@@ -95,11 +95,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4138782865355375877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf809297732807f4a8472afb6af2a9f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 215bcfbc928a8e34e82d9abd543a9a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  PlayerJump: 400
+  PlayerJump: 500
   playerHeight: 2
 --- !u!50 &4138782865355375876
 Rigidbody2D:
@@ -117,7 +117,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 1
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 6460a2907f86fb04284ef1d6d24778fc, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4138782865355375877}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 6460a2907f86fb04284ef1d6d24778fc, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

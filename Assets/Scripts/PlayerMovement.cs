@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerHeight = 2.0f;
     Rigidbody2D rb;
     BoxCollider2D playerCollider;
+    public Animator animator;
 
     private bool IsGrounded()
     {
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.AddForce(new Vector2(0, PlayerJump * rb.mass));
+            animator.setBool("isInAir", true);
         }
     }
 }
