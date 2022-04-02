@@ -12,9 +12,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - playerHeight - 0.1f),
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - playerHeight/2 - 0.1f),
             Vector2.down,
-            .01f);
+            .1f);
         return hit.transform != null;
     }
 
@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(input.x * playerSpeed, rb.velocity.y);
         }
+
+        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - playerHeight/2 - 0.1f), Vector2.down * .1f, Color.red);
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {

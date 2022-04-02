@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2053163922458770209}
   - component: {fileID: 2053163922458770208}
   - component: {fileID: 2053163922458770211}
-  - component: {fileID: 218135896}
   - component: {fileID: 8248232033805133106}
+  - component: {fileID: -9095005133203553387}
   m_Layer: 0
   m_Name: FallingObject3.prefab
   m_TagString: Untagged
@@ -95,7 +95,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2053163922458770223}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 6460a2907f86fb04284ef1d6d24778fc, type: 2}
+  m_Material: {fileID: 6200000, guid: 6a4c9f2b0a5d3b94aa6b645fc3bd522e, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -112,18 +112,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9708514, y: 0.9672079}
   m_EdgeRadius: 0
---- !u!114 &218135896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2053163922458770223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c910fef945c22b94295a66fc24ba14d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &8248232033805133106
 Rigidbody2D:
   serializedVersion: 4
@@ -140,8 +128,20 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 6460a2907f86fb04284ef1d6d24778fc, type: 2}
+  m_Material: {fileID: 6200000, guid: 6a4c9f2b0a5d3b94aa6b645fc3bd522e, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-9095005133203553387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053163922458770223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b455b02d109f23b47ad0f1a09c8339f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

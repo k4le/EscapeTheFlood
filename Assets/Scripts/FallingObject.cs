@@ -15,7 +15,7 @@ public class FallingObject : MonoBehaviour
         bc = GetComponent<BoxCollider2D>();
 
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.up * -100f);
+        rb.AddForce(transform.up * -1000f);
         //rb.velocity = new Vector2(0, -50);
     }
 
