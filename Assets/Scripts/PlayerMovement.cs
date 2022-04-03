@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
 
     //debug parameters
     public bool godMode = false;
-
     private bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x - transform.localScale.x / 2, transform.position.y - playerHeight / 2 - 0.1f),
@@ -83,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-
+        SoundManager.playSound("die");
         //TODO move to main menu
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
@@ -173,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+            SoundManager.playSound("jump");
             rb.AddForce(new Vector2(0, PlayerJump * rb.mass));
             animator.SetBool("isMoving", false);
         }
