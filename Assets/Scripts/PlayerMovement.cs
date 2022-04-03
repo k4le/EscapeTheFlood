@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     float startLevel;
 
     public float CameraFollowSpeed = 2.0f;
+    public Gradient backgroundGradient;
 
     //debug parameters
     public bool godMode = false;
@@ -61,9 +62,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void UpdateBackgroundColor()
+    {
+        float temp = 1000.0f;
+        if (Camera.main.transform.position.y < 1000)
+        {
+            temp = Camera.main.transform.position.y;
+        }
+        Camera.main.backgroundColor = backgroundGradient.Evaluate(temp / 1000.0f);
+    }
+
     void Start()
     {
         GetComponents();
+
+        GradientColorKey[] gck = new GradientColorKey[2];
+        GradientAlphaKey[] gak = new GradientAlphaKey[2];
+        gck[0].color = new Color32(192, 232, 255, 255);
+        gck[0].time = 0.0f;
+        gck[1].color = new Color32(0, 53, 84, 255);
+        gck[1].time = 1.0f;
+
+        gak[0].alpha = 1.0f;
+        gak[0].time = 0.0F;
+        gak[1].alpha = 1.0f;
+        gak[1].time = 1.0F;
+        backgroundGradient.SetKeys(gck, gak);
     }
 
     void UpdateCameraPosition()
@@ -148,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateCameraPosition();
         CheckThatPlayerIsAlive();
         AddCollisionsToPlatforms();
+        UpdateBackgroundColor();
 
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
