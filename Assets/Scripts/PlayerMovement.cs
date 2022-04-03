@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     float startLevel;
 
     public float CameraFollowSpeed = 2.0f;
+
+    //debug parameters
+    public bool godMode = false;
     private bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x - transform.localScale.x / 2, transform.position.y - playerHeight / 2 - 0.1f),
@@ -75,6 +78,11 @@ public class PlayerMovement : MonoBehaviour
 
     void StopTheGame()
     {
+        if (true == godMode)
+        {
+            return;
+        }
+
         //TODO move to main menu
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
