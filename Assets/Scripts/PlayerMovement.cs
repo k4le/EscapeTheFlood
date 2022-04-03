@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         if (null == spriteRenderer)
         {
             Debug.LogWarning("Sprite renderer not found!");
-            gameObject.AddComponent<SpriteRenderer>();
+            spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         }
 
         //Get animator component
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         if (null == animator)
         {
             Debug.LogWarning("Animator not found!");
-            gameObject.AddComponent<Animator>();
+            animator = gameObject.AddComponent<Animator>();
         }
 
         //Get rigidbody
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         if (null == rb)
         {
             Debug.LogWarning("Rigidbody2D not found!");
-            gameObject.AddComponent<Rigidbody2D>();
+            rb = gameObject.AddComponent<Rigidbody2D>();
         }
 
         //Get collider
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         if (null == playerCollider)
         {
             Debug.LogWarning("BoxCollider2D not found!");
-            gameObject.AddComponent<BoxCollider2D>();
+            playerCollider = gameObject.AddComponent<BoxCollider2D>();
         }
     }
 
