@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-
+        SoundManager.playSound("die");
         //TODO move to main menu
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
@@ -172,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+            SoundManager.playSound("jump");
             rb.AddForce(new Vector2(0, PlayerJump * rb.mass));
             animator.SetBool("isMoving", false);
         }
