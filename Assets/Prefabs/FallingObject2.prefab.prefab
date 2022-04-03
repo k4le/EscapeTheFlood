@@ -147,4 +147,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 100
   objectSprite: {fileID: 2053163922458770208}
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: a6562c90360548148a53ddfd53f3c56f, type: 3}
+  - {fileID: 21300000, guid: b620b0d9de5fbbb45a6b45331d0c4afa, type: 3}
+  - {fileID: 21300000, guid: 8dd883b453f742246a0eb49333e1756b, type: 3}
+  - {fileID: 21300000, guid: 3e7933a975ba5da4ebed1f1e996d0536, type: 3}
+  - {fileID: 21300000, guid: d2213fca7e7fa684baff99aef013b0b0, type: 3}
+  - {fileID: 21300000, guid: c7f4b12958886624ab227c2b1f29ba2c, type: 3}
