@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //AddScore();
+        AddScore();
 
         UpdateCameraPosition();
         CheckThatPlayerIsAlive();
