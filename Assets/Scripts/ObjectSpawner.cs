@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformSpawner : MonoBehaviour
+public class ObjectSpawner : MonoBehaviour
 {
     public GameObject[] PlatformPrefabs;
 
@@ -15,6 +15,11 @@ public class PlatformSpawner : MonoBehaviour
     Vector2 cameraStartPosition;
 
     int totalCountOfGeneratedPlatforms;
+
+    //Falling objects
+    public GameObject[] FallingObjectPrefabs;
+    public int fallingObjectSpawnRange;
+    public float timeBetweenBlockSpawns = 1.0f;
 
     void GeneratePlatform(int count = 1)
     {
@@ -51,12 +56,18 @@ public class PlatformSpawner : MonoBehaviour
         {
             if ("FallingObject" == gameObject.tag)
             {
-                if (gameObject.transform.position.y < cameraStartPosition.y + idOfLowestPlatform * distanceBetweenPlatforms - distanceBetweenPlatforms)
+                if (gameObject.transform.position.y < Camera.main.transform.position.y - distanceBetweenPlatforms)
                 {
                     Destroy(gameObject);
                 }
             }
         }
+    }
+
+    void SpawnObject()
+    {
+        float spawnHeight = Camera.main.transform.position.y + distanceBetweenPlatforms;
+        GameObject obj = Instantiate(FallingObjectPrefabs[Random.Range(0, FallingObjectPrefabs.Length - 1)], new Vector3(UnityEngine.Random.Range(-fallingObjectSpawnRange/2, fallingObjectSpawnRange/2), spawnHeight, 0), transform.rotation);
     }
 
     // Start is called before the first frame update
@@ -66,6 +77,10 @@ public class PlatformSpawner : MonoBehaviour
         cameraStartPosition = Camera.main.transform.position;
         totalCountOfGeneratedPlatforms = 0;
         GeneratePlatform(MaxCountOfExistingPlatforms);
+        
+        //Spawning off falling objects
+        InvokeRepeating("SpawnObject", 2.0f, timeBetweenBlockSpawns);
+
     }
 
     // Update is called once per frame
@@ -77,6 +92,6 @@ public class PlatformSpawner : MonoBehaviour
         {
             GeneratePlatform();
         }
-
     }
 }
+
