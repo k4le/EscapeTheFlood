@@ -79,7 +79,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -95,7 +95,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2053163922458770223}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 6a4c9f2b0a5d3b94aa6b645fc3bd522e, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -106,7 +106,7 @@ BoxCollider2D:
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -128,7 +128,7 @@ Rigidbody2D:
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 6a4c9f2b0a5d3b94aa6b645fc3bd522e, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -142,7 +142,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2053163922458770223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b455b02d109f23b47ad0f1a09c8339f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 821286c3a23483146b8e27c2cb443571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 100
+  objectSprite: {fileID: 0}
+  sprites:
+  - {fileID: 21300000, guid: ca3c675cce8490642ae0420b18e4a277, type: 3}
+  - {fileID: 21300000, guid: b2a8bad1b08c73242aad9e8cee54e075, type: 3}
+  - {fileID: 21300000, guid: c1b56bf4d9be06e46af5e281e2705366, type: 3}
+  - {fileID: 21300000, guid: 64fe5a0de5174984b935c7af9f3deb83, type: 3}

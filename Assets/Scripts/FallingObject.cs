@@ -10,12 +10,22 @@ public class FallingObject : MonoBehaviour
     bool freeFall = true;
     int collisionCount = 0;
     public float maxSpeed = 100;
+
+    public SpriteRenderer objectSprite;
+    public Sprite[] sprites;
     // Start is called before the first frame update
+    void changeSprite()
+    {
+        objectSprite.sprite = sprites[1];
+    }
+
     void Start()
     {
         bc = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        changeSprite();
     }
+
 
     void FixedUpdate()
     {

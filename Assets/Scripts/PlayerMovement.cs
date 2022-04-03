@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D playerCollider;
     public Animator animator;
+    public SpriteRenderer spriteRenderer;
 
     public float CameraFollowSpeed = 2.0f;
     private bool IsGrounded()
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        startLevel = transform.position.y;
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
     }
@@ -31,15 +34,16 @@ public class PlayerMovement : MonoBehaviour
         if (transform.position.y > Camera.main.transform.position.y)
         {
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x,
-                Camera.main.transform.position.y + Time.deltaTime * CameraFollowSpeed,
-                Camera.main.transform.position.z);
+            Camera.main.transform.position.y + Time.deltaTime * CameraFollowSpeed,
+            Camera.main.transform.position.z);
         }
     }
 
     void StopTheGame()
     {
         //TODO move to main menu
-        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 
     void CheckThatPlayerIsAlive()
@@ -47,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         //Check that players y > Lowest edge of camera.
         if (transform.position.y - Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y < 0)
         {
+            ScoreManager.instance.PlayerDied();
             StopTheGame();
         }
 
@@ -70,21 +75,36 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(new Vector2(transform.position.x - colliderWidth / 2, transform.position.y + playerHeight / 2 + 0.2f), Vector2.right * colliderWidth, Color.red);
     }
 
+    void AddScore()
+	{
+        ScoreManager.instance.AddPoints(System.Math.Round((transform.position.y - startLevel) * 10, 2));
+    }
 
     void Update()
     {
+        AddScore();
 
         UpdateCameraPosition();
+
         CheckThatPlayerIsAlive();
 
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-     
         if (0 != input.x)
         {
-            //jos liikkuu vasemmalle, flip sprite, jos ei niin false x flip
+            if(input.x < 0)
+            {
+                spriteRenderer.flipX = true;
+            }else if(input.x > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
             transform.Translate(input.x * playerSpeed * Time.deltaTime, 0, 0);
             animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
         }
 
         Debug.DrawRay(new Vector2(transform.position.x - transform.localScale.x/2, transform.position.y - playerHeight/2 - 0.2f), Vector2.right * 1f, Color.red);
@@ -92,11 +112,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.AddForce(new Vector2(0, PlayerJump * rb.mass));
-            animator.SetBool("isInAir", true);
             animator.SetBool("isMoving", false);
         }
 
-        if (IsGrounded())
+        if (!IsGrounded())
+        {
+            animator.SetBool("isInAir", true);
+        }
+        else
         {
             animator.SetBool("isInAir", false);
         }
