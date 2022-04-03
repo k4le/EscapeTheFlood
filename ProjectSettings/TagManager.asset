@@ -7,6 +7,8 @@ TagManager:
   - ScoreManager
   - Score
   - HighScore
+  - Platform
+  - FallingObject
   layers:
   - Default
   - TransparentFX

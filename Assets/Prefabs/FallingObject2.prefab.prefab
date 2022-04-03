@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2053163922458770208}
   - component: {fileID: 2053163922458770211}
   - component: {fileID: 8248232033805133106}
-  - component: {fileID: 4266792063148484806}
+  - component: {fileID: 1456245542344043780}
   m_Layer: 0
   m_Name: FallingObject2.prefab
-  m_TagString: Untagged
+  m_TagString: FallingObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
+  m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -106,7 +106,7 @@ BoxCollider2D:
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -133,7 +133,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4266792063148484806
+--- !u!114 &1456245542344043780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,15 +142,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2053163922458770223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 821286c3a23483146b8e27c2cb443571, type: 3}
+  m_Script: {fileID: 11500000, guid: b455b02d109f23b47ad0f1a09c8339f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 100
   objectSprite: {fileID: 0}
-  sprites:
-  - {fileID: 21300000, guid: a6562c90360548148a53ddfd53f3c56f, type: 3}
-  - {fileID: 21300000, guid: b620b0d9de5fbbb45a6b45331d0c4afa, type: 3}
-  - {fileID: 21300000, guid: 8dd883b453f742246a0eb49333e1756b, type: 3}
-  - {fileID: 21300000, guid: 3e7933a975ba5da4ebed1f1e996d0536, type: 3}
-  - {fileID: 21300000, guid: d2213fca7e7fa684baff99aef013b0b0, type: 3}
-  - {fileID: 21300000, guid: c7f4b12958886624ab227c2b1f29ba2c, type: 3}
+  sprites: []

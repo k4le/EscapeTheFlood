@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D playerCollider;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    float startLevel;
 
     public float CameraFollowSpeed = 2.0f;
     private bool IsGrounded()
@@ -22,11 +23,44 @@ public class PlayerMovement : MonoBehaviour
         return hit.transform != null;
     }
 
+    void GetComponents ()
+    {
+        //Get sprite renderer component
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (null == spriteRenderer)
+        {
+            Debug.LogWarning("Sprite renderer not found!");
+            gameObject.AddComponent<SpriteRenderer>();
+        }
+
+        //Get animator component
+        animator = GetComponent<Animator>();
+        if (null == animator)
+        {
+            Debug.LogWarning("Animator not found!");
+            gameObject.AddComponent<Animator>();
+        }
+
+        //Get rigidbody
+        rb = GetComponent<Rigidbody2D>();
+        if (null == rb)
+        {
+            Debug.LogWarning("Rigidbody2D not found!");
+            gameObject.AddComponent<Rigidbody2D>();
+        }
+
+        //Get collider
+        playerCollider = GetComponent<BoxCollider2D>();
+        if (null == playerCollider)
+        {
+            Debug.LogWarning("BoxCollider2D not found!");
+            gameObject.AddComponent<BoxCollider2D>();
+        }
+    }
+
     void Start()
     {
-        startLevel = transform.position.y;
-        rb = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<BoxCollider2D>();
+        GetComponents();
     }
 
     void UpdateCameraPosition()
@@ -80,13 +114,32 @@ public class PlayerMovement : MonoBehaviour
         ScoreManager.instance.AddPoints(System.Math.Round((transform.position.y - startLevel) * 10, 2));
     }
 
+    void AddCollisionsToPlatforms()
+    {
+        GameObject[] gameObjects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject gameObject in gameObjects)
+        {
+            if ("Platform" == gameObject.tag)
+            {
+                if (gameObject.transform.position.y < transform.position.y)
+                {
+
+                    if (null == gameObject.GetComponent<BoxCollider>())
+                    {
+                        gameObject.AddComponent<BoxCollider2D>();
+                    }
+                }
+            }
+        }
+    }
+
     void Update()
     {
-        AddScore();
+        //AddScore();
 
         UpdateCameraPosition();
-
         CheckThatPlayerIsAlive();
+        AddCollisionsToPlatforms();
 
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
